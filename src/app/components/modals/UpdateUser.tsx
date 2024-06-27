@@ -77,9 +77,9 @@ const UpdateUser: React.FC<Props> = ({ handleUpdate }) => {
 												id='role'
 												className='bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4  '>
 												<option selected>Select Role</option>
-												<option value='US'>Admin</option>
-												<option value='CA'>Sales Manager</option>
-												<option value='FR'>Sales Representative</option>
+												<option value='admin'>Admin</option>
+												<option value='sales manager'>Sales Manager</option>
+												<option value='sales rep'>Sales Representative</option>
 											</select>
 										</div>
 

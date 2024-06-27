@@ -56,8 +56,7 @@ const Table = () => {
 		getUsers();
 	}, []);
 
-	console.log(users);
-
+	// console.log(users[0]);
 	return (
 		<div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
 			<table className='w-full text-sm text-left rtl:text-right'>
@@ -113,7 +112,7 @@ const Table = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{/* {loading === false && users.length > 0 ? (
+					{loading === false && users ? (
 						users?.map((user: User) => (
 							<tr
 								className='odd:bg-white even:bg-gray-50  border-b text-xs text-[#344054]'
@@ -127,76 +126,41 @@ const Table = () => {
 									</div>
 								</th>
 								<td className='px-6 py-4'>{user.email}</td>
-								<td className='px-6 py-4'>{user.role}</td>
+								<td className='px-6 py-4 '>
+									<p
+										className={`py-1 px-2 rounded-[25px] text-center w-max ${
+											user.role === 'Administrator'
+												? 'text-[#0D6EFD] bg-[#F0F6FE]'
+												: user.role === 'Sales Manager'
+												? 'text-[#0F973D] bg-[#E7F6EC]'
+												: 'text-[#F58A07] bg-[#FEF4E6]'
+										}`}>
+										{user.role}
+									</p>
+								</td>
 								<td className='px-6 py-4 text-xs '>
 									<span
 										className='text-[#0D6EFD] mr-4 cursor-pointer'
 										onClick={() => handleUpdate()}>
 										View
 									</span>
-									<span className='text-[#98A2B3] cursor-pointer'>Remove</span>
+									<span
+										className='text-[#98A2B3] cursor-pointer'
+										onClick={() => handleDelete()}>
+										Remove
+									</span>
 								</td>
 							</tr>
 						))
+					) : loading === false && users && users.length === 0 ? (
+						<tr>
+							<td className='text-center'>No User</td>
+						</tr>
 					) : (
-						<tr>No User</tr>
-					)} */}
-					<tr className='odd:bg-white even:bg-gray-50  border-b text-xs text-[#344054]'>
-						<th
-							scope='row'
-							className='px-6 py-4 whitespace-nowrap font-normal '>
-							<div className='flex gap-x-2 items-center'>
-								<TableCheckBox />
-								Benjamin Charles
-							</div>
-						</th>
-						<td className='px-6 py-4'>Biggcodes@gmail.com</td>
-						<td className='px-6 py-4 '>
-							<p className='text-[#0D6EFD] bg-[#F0F6FE] py-1 px-2 rounded-[25px] text-center w-max'>
-								Administrator
-							</p>
-						</td>
-						<td className='px-6 py-4 text-xs '>
-							<span
-								className='text-[#0D6EFD] mr-4 cursor-pointer'
-								onClick={() => handleUpdate()}>
-								View
-							</span>
-							<span
-								className='text-[#98A2B3] cursor-pointer'
-								onClick={() => handleDelete()}>
-								Remove
-							</span>
-						</td>
-					</tr>
-					<tr className='odd:bg-white even:bg-gray-50  border-b text-xs text-[#344054]'>
-						<th
-							scope='row'
-							className='px-6 py-4 whitespace-nowrap font-normal '>
-							<div className='flex gap-x-2 items-center'>
-								<TableCheckBox />
-								James Charles
-							</div>
-						</th>
-						<td className='px-6 py-4'>james@gmail.com</td>
-						<td className='px-6 py-4 '>
-							<p className='text-[#0F973D] bg-[#E7F6EC] py-1 px-2 rounded-[25px] text-center w-max'>
-								Sales Manager
-							</p>
-						</td>
-						<td className='px-6 py-4 text-xs '>
-							<span
-								className='text-[#0D6EFD] mr-4 cursor-pointer'
-								onClick={() => handleUpdate()}>
-								View
-							</span>
-							<span
-								className='text-[#98A2B3] cursor-pointer'
-								onClick={() => handleDelete()}>
-								Remove
-							</span>
-						</td>
-					</tr>
+						<tr>
+							<td className='text-center'>loading...</td>
+						</tr>
+					)}
 				</tbody>
 			</table>
 			{create && <CreateUser handleCreate={handleCreate} />}
