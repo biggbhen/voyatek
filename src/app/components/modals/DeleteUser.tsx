@@ -4,7 +4,7 @@ type Props = {
 	handleDelete: () => void;
 };
 
-const DeleteUser = ({ handleDelete }) => {
+const DeleteUser: React.FC<Props> = ({ handleDelete }) => {
 	return (
 		<>
 			<div
